@@ -1,18 +1,19 @@
 <template>
   <div
-    class="h-header w-full dark:bg-zinc-800 dark:bg-none bg-gradient-to-l to-white from-main px-2 py-1 duration-500"
+    class=" xl:h-header w-full dark:bg-zinc-800 dark:bg-none bg-gradient-to-l to-white from-main px-2 py-1 duration-500"
   >
-    <div class="flex items-center">
+    <div class="flex items-center flex-wrap">
       <m-svg-icon
         name="logo"
         class="h-3 w-16 cursor-pointer mr-1 mt-2 ml-1"
         fillClass="dark:fill-zinc-300"
         @click="onToHome"
       ></m-svg-icon>
-      <header-search-vue class="mr-1 w-6/12" />
+      <header-search-vue v-if="!isMobileTerminal"  class="mr-1 w-6/12" />
       <div class="flex-auto"></div>
       <header-theme-vue class="mr-1" />
       <header-my-vue />
+      <header-search-vue v-if="isMobileTerminal"  class="mr-1 w-full" />
     </div>
   </div>
 </template>
@@ -25,6 +26,7 @@ export default {
 import headerSearchVue from './header-search/index.vue'
 import headerThemeVue from './header-theme.vue'
 import headerMyVue from './header-my.vue'
+import { isMobileTerminal } from '@/utils/flexible'
 import {} from 'vue'
 
 import { useRouter } from 'vue-router'

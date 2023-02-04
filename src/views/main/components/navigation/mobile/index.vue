@@ -11,7 +11,7 @@
       ></li>
       <!-- hamburger -->
       <li
-        class="fixed top-0 right-0 h-3 px-1 flex items-center z-30 bg-white dark:bg-zinc-800 shadow-l-white dark:shadow-none"
+        class="absolute top-0 right-0 h-3 px-1 flex items-center z-30 bg-white dark:bg-zinc-800 shadow-l-white dark:shadow-none"
         @click="onShowPopup"
       >
         <m-svg-icon

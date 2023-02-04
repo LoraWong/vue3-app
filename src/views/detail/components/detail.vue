@@ -19,6 +19,7 @@
       name="close"
       fillClass="fill-zinc-400"
       class="w-3 h-3 ml-1 p-0.5 cursor-pointer duration-200 rounded-sm hover:bg-zinc-100 absolute right-2 top-2"
+      @click="onClose"
     ></m-svg-icon>
     <!-- content -->
     <div class="xl:w-[80%] xl:h-auto xl:mx-auto xl:rounded-lg xl:flex bg-white mb-2 xl:mb-0">
@@ -70,6 +71,7 @@ import { getPixelsFromId } from '@/api/pixels.js'
 import mNavbar from '@/libs/navbar/index.vue'
 import { isMobileTerminal } from '@/utils/flexible.js'
 import { randomColor } from '@/utils/color.js'
+import { useRouter } from 'vue-router'
 
 const props = defineProps({
   id: {
@@ -77,6 +79,8 @@ const props = defineProps({
     required: true,
   },
 })
+
+const router = useRouter()
 
 /**
  * @description: 获取当前图片数据
@@ -88,6 +92,14 @@ const getPixelData = async () => {
   pixelData.value = data
 }
 getPixelData()
+
+/**
+ * @description: pc端关闭按钮 点击事件
+ */
+const onClose = () => {
+  // 后退一步，list组件监听浏览器后退按钮事件, 会隐藏 detail
+  router.back()
+}
 </script>
 
 <style lang="scss" scoped>

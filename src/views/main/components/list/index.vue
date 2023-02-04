@@ -182,7 +182,7 @@ const onLeave = (el, done) => {
 }
 
 /**
- * @description: 监听浏览器后退按钮事件,隐藏 detail
+ * @description: 监听浏览器后退按钮事件, 隐藏 detail
  */
 onMounted(() => {
   window.addEventListener('popstate', () => {

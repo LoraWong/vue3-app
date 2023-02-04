@@ -4,7 +4,7 @@ import { h, render } from 'vue'
 /**
  * @description: 函数调用 message组件
  */
-export const message = (type, content, duration = 3000) => {
+export const message = (type, content, duration = 5000) => {
   /**
    * @description: 关闭回调
    */

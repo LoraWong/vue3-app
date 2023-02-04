@@ -2,5 +2,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import './transition.scss'
+@import './transition.scss';
 
+@layer components {
+  .login-form-container {
+    @apply absolute top-0 h-[100%] transition;
+  }
+  .login-input {
+    @apply bg-zinc-100 border-0 outline-none w-[100%] h-5 p-1 my-1 text-sm rounded-md focus:shadow-md;
+  }
+}

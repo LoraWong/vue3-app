@@ -11,7 +11,7 @@
       <input
         type="text"
         placeholder="Search..."
-        class="search-input-blur block w-full h-[44px] pl-5 pr-5 outline-none placeholder:italic placeholder:text-zinc-400 text-base text-slate-400 duration-500 focus:shadow-sm focus:shadow-zinc-500/50 focus:placeholder:text-zinc-900 hover:shadow-sm hover:shadow-zinc-50/90"
+        class="search-input-blur block w-full h-[40px] pl-5 pr-5 outline-none placeholder:italic placeholder:text-zinc-400 text-base text-slate-400 duration-500 focus:shadow-sm focus:shadow-zinc-500/50 focus:placeholder:text-zinc-900 hover:shadow-sm hover:shadow-zinc-50/90"
         :value="modelValue"
         @change="onChangeHandler"
         @keyup.enter="onSearchHandler"
