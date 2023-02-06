@@ -1,14 +1,14 @@
 <template>
-  <router-view></router-view>
+  <router-view v-slot="{ Component }">
+    <keep-alive>
+      <component :is="Component" :key="$route.fullPath"></component>
+    </keep-alive>
+  </router-view>
 </template>
 
-
 <script setup>
-import {} from 'vue'
-
-import {} from 'vue-router'
+console.log('main')
+// todo: 缓存main组件
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

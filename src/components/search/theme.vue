@@ -28,7 +28,7 @@
         >
           <img class="w-full h-full object-cover rounded" v-lazy :src="item.photo" />
           <p
-            class="backdrop-blur absolute top-0 left-0 w-full h-full flex items-center px-1 rounded cursor-pointer duration-300 hover:backdrop-blur-none"
+            class=" backdrop-blur-sm absolute top-0 left-0 w-full h-full flex items-center px-1 rounded cursor-pointer duration-300 hover:backdrop-blur-none"
           >
             # {{ item.title }}
           </p>

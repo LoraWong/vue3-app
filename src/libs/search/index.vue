@@ -11,7 +11,7 @@
       <input
         type="text"
         placeholder="Search..."
-        class="search-input-blur block w-full h-[40px] pl-5 pr-5 outline-none placeholder:italic placeholder:text-zinc-400 text-base text-slate-400 duration-500 focus:shadow-sm focus:shadow-zinc-500/50 focus:placeholder:text-zinc-900 hover:shadow-sm hover:shadow-zinc-50/90"
+        class="search-input-blur block w-full h-3.5 xl:h-[40px] pl-5 pr-5 outline-none placeholder:italic placeholder:text-zinc-400 text-sm xl:text-base text-slate-400 duration-500 focus:shadow-sm focus:shadow-zinc-500/50 focus:placeholder:text-zinc-900 hover:shadow-sm hover:shadow-zinc-50/90"
         :value="modelValue"
         @change="onChangeHandler"
         @keyup.enter="onSearchHandler"
@@ -41,14 +41,16 @@
       ></m-button>
     </div>
     <!--下拉框 -->
-    <transition name="slide">
-      <div
-        class="max-h-[368px] w-full text-base overflow-y-auto bg-white dark:bg-zinc-800 dark:text-zinc-300 dark:border-zinc-600 absolute top-[46px] left-0 z-40 p-2 rounded border border-zinc-200 duration-200 hover:shadow-lg"
-        v-show="showDropdown"
-      >
-        <slot name="dropdown"></slot>
-      </div>
-    </transition>
+    <template v-if="isDropdown">
+      <transition name="slide">
+        <div
+          class="max-h-[368px] w-full text-base overflow-y-auto bg-white dark:bg-zinc-800 dark:text-zinc-300 dark:border-zinc-600 absolute top-[46px] left-0 z-40 p-2 rounded border border-zinc-200 duration-200 hover:shadow-lg"
+          v-show="showDropdown"
+        >
+          <slot name="dropdown"></slot>
+        </div>
+      </transition>
+    </template>
   </div>
 </template>
 
@@ -78,6 +80,11 @@ const props = defineProps({
   modelValue: {
     type: String,
     required: true,
+  },
+  // 是否需要下拉框
+  isDropdown: {
+    type: Boolean,
+    default: true,
   },
 })
 const emits = defineEmits([

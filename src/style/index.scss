@@ -11,4 +11,13 @@
   .login-input {
     @apply bg-zinc-100 border-0 outline-none w-[100%] h-5 p-1 my-1 text-sm rounded-md focus:shadow-md;
   }
+  .bg-gradient {
+    @apply bg-gradient-to-l from-[#FF4B2B] to-[#FF416C] dark:bg-none
+  }
+}
+
+/* 处理img破图/图片裂开 */
+img[src=''],
+img:not([src]) {
+  opacity: 0;
 }

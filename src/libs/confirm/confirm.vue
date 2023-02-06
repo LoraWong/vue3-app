@@ -20,7 +20,7 @@
           {{ title }}
         </div>
         <!-- 内容 -->
-        <div class="text-base text-zinc-900 dark:text-zinc-200 mb-2">
+        <div class="text-sm text-zinc-900 dark:text-zinc-200 mb-2">
           {{ content }}
         </div>
         <!-- 按钮 -->

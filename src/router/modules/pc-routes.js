@@ -26,4 +26,20 @@ export default [
     name: 'register',
     component: () => import('@/views/login-register/register/index.vue'),
   },
+  {
+    path: '/profile/:userId',
+    name: 'profile',
+    component: () => import('@/views/profile/index.vue'),
+    meta: {
+      user: true,
+    },
+  },
+  {
+    path: '/member',
+    name: 'member',
+    component: () => import('@/views/member/index.vue'),
+    meta: {
+      user: true, // 需要登录才可以访问
+    },
+  },
 ]

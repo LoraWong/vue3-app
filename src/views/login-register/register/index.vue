@@ -3,7 +3,9 @@
     <div
       class="bg-gradient-to-l from-[#FF4B2B] to-[#FF416C] xl:bg-white dark:bg-zinc-800 w-full h-full xl:w-[768px] xl:h-[600px] overflow-hidden xl:rounded-lg xl:shadow-lg relative"
     >
-      <m-svg-icon name="logo" class="absolute top-3 left-5 xl:hidden"></m-svg-icon>
+      <m-navbar class="bg-inherit xl:hidden" :clickLeft="onBackClick">
+        <m-svg-icon name="logo" class="w-13 h-2"></m-svg-icon>
+      </m-navbar>
       <div class="absolute left-0 bottom-0 w-full xl:w-[50%] h-[80%] xl:h-full z-20">
         <img
           src="@/assets/avatar.png"
@@ -99,7 +101,7 @@
       </div>
       <div class="absolute right-0 w-[50%] h-[100%] overflow-hidden z-30 hidden xl:block">
         <div
-          class="h-[100%] bg-gradient-to-l from-[#FF4B2B] to-[#FF416C] text-white flex justify-center items-center"
+          class="h-[100%] bg-gradient text-white flex justify-center items-center"
         >
           <div class="flex justify-center items-center flex-col text-center">
             <router-link to="/">
@@ -113,6 +115,12 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'register'
+}
+</script>
 
 <script setup>
 import { ref } from 'vue'
@@ -131,10 +139,12 @@ import {
   validateAgreement,
 } from '../validator.js'
 import { useUserStore } from '@/store/modules/user.js'
+import { useAppStore } from '@/store/modules/app.js'
 import { LOGIN_TYPE_USERNAME } from '@/constants'
 
 const router = useRouter()
 const userStore = useUserStore()
+const appStore = useAppStore()
 
 /**
  * 插入规则
@@ -166,6 +176,8 @@ const onRegisterHandler = async () => {
     // 发请求登录
     await userStore.login({ ...payload, loginType: LOGIN_TYPE_USERNAME })
     message('success', `欢迎您，${regForm.value.username}，注册成功！`, 6000)
+    // 修改路由过渡类型
+    appStore.changeRouterType('push')
     // 路由跳转到首页
     router.push('/')
   } catch (error) {
@@ -178,7 +190,18 @@ const onRegisterHandler = async () => {
  * @description: 跳转到 register
  */
 const onToLogin = () => {
+  // 修改路由过渡类型
+  appStore.changeRouterType('push')
   router.push('/login')
+}
+
+/**
+ * @description: navbar后退按钮
+ */
+const onBackClick = () => {
+  // 修改路由过渡类型
+  appStore.changeRouterType('back')
+  router.back()
 }
 </script>
 

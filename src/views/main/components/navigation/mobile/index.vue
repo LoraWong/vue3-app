@@ -1,7 +1,7 @@
 <template>
   <div class="bg-white sticky top-0 left-0 z-10 dark:bg-zinc-800 duration-500">
     <ul
-      class="relative flex overflow-x-auto p-[1vw] text-xs text-zinc-600 dark:text-zinc-300 overflow-hidden scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent"
+      class="relative flex overflow-x-auto p-[1vw] text-xs text-zinc-600 dark:text-zinc-300 overflow-hidden"
       ref="ulTarget"
     >
       <!-- slider -->
@@ -46,6 +46,8 @@ import menuVue from '@/views/main/components/menu/index.vue'
 import { useCategoryStore } from '@/store/modules/category.js'
 import { useAppStore } from '@/store/modules/app.js'
 
+// bug: 退出登录，刷新页面，重新挂载组件，无法显示完整的category？？
+// bug: hamburger定位不随滚动条移动
 const categoryStore = useCategoryStore()
 const appStore = useAppStore()
 
@@ -126,6 +128,9 @@ const onItemClick = (item) => {
     isPopupShow.value = false
   }
 }
+
+
+
 </script>
 
 <style lang="scss" scoped></style>

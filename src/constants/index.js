@@ -23,3 +23,8 @@ export const LOGIN_TYPE_QQ = 'qq'
 // user
 export const TOKEN = 'token'
 export const USER_INFO = 'userInfo'
+
+// STS 上传数据
+export const REGION = 'oss-cn-beijing'
+export const BUCKET = 'imooc-front'
+

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fixed left-0 top-0 z-40 w-screen h-screen text-xl bg-white xl:bg-transparent backdrop-blur-3xl overflow-y-auto xl:p-2 scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent"
+    class="fixed left-0 top-0 z-40 w-screen h-screen text-xl bg-white dark:bg-zinc-900 xl:bg-transparent backdrop-blur-3xl overflow-y-auto xl:p-2 scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent"
   >
     <!-- 移动端展示 navbar -->
     <m-navbar v-if="isMobileTerminal">
@@ -17,12 +17,14 @@
     <m-svg-icon
       v-else
       name="close"
-      fillClass="fill-zinc-400"
+      fillClass="fill-zinc-900 dark:fill-zinc-200 "
       class="w-3 h-3 ml-1 p-0.5 cursor-pointer duration-200 rounded-sm hover:bg-zinc-100 absolute right-2 top-2"
       @click="onClose"
     ></m-svg-icon>
     <!-- content -->
-    <div class="xl:w-[80%] xl:h-auto xl:mx-auto xl:rounded-lg xl:flex bg-white mb-2 xl:mb-0">
+    <div
+      class="xl:w-[80%] xl:h-auto xl:mx-auto xl:rounded-lg xl:flex bg-white dark:bg-zinc-900 pb-2 xl:mb-0"
+    >
       <img
         class="w-screen mb-2 xl:mb-0 xl:w-3/5 xl:rounded-tl-lg xl:rounded-bl-lg"
         :src="pixelData.photo"
@@ -72,6 +74,9 @@ import mNavbar from '@/libs/navbar/index.vue'
 import { isMobileTerminal } from '@/utils/flexible.js'
 import { randomColor } from '@/utils/color.js'
 import { useRouter } from 'vue-router'
+import { useAppStore } from '@/store/modules/app.js'
+
+const appStore = useAppStore()
 
 const props = defineProps({
   id: {
@@ -98,6 +103,7 @@ getPixelData()
  */
 const onClose = () => {
   // 后退一步，list组件监听浏览器后退按钮事件, 会隐藏 detail
+  // 修改路由过渡类型
   router.back()
 }
 </script>

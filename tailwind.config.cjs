@@ -32,6 +32,7 @@ module.exports = {
         'error-200': '#f3471c',
         'error-300': '#ffffff',
       },
+      fill: { main: '#ef3b36' },
       variants: {
         // 让 scrollBar 支持 dark 模式
         scrollbar: ['dark'],

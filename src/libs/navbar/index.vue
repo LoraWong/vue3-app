@@ -22,6 +22,12 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: 'navbar'
+}
+</script>
+
 <script setup>
 import {} from 'vue'
 import { useRouter } from 'vue-router'

@@ -44,6 +44,7 @@ import { useAppStore } from '@/store/modules/app.js'
 
 const categoryStore = useCategoryStore()
 const appStore = useAppStore()
+
 /**
  * @description: navigation 展开收起
  */

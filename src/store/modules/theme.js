@@ -9,7 +9,7 @@ export const useThemeStore = defineStore({
     // 主题模式
     themeType: getItem(CURRENT_THEME) || THEME_LIGHT,
   }),
-  getters: {},
+
   actions: {
     // 切换主题模式
     changeTheme(newTheme) {

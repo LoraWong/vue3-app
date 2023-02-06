@@ -1,5 +1,5 @@
 import { defineAsyncComponent } from 'vue'
-// 导入并导出
+// 方法调用组件 导入并导出
 export { confirm } from './confirm'
 export { message } from './message'
 

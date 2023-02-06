@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- 已登录 -->
-    <m-popover v-if="userStore.userInfo" class="flex items-center" placement="bottom-left">
+    <m-popover v-if="userStore.hasUserInfo" class="flex items-center" placement="bottom-left">
       <template #reference>
         <div
           class="guide-my relative flex items-center p-0.5 rounded-sm cursor-pointer duration-200 outline-none hover:bg-zinc-100/30"
@@ -17,7 +17,7 @@
           <!-- vip 标记 -->
           <m-svg-icon
             v-if="userStore.userInfo.vipLevel"
-            name="vip"
+            name="vip-level"
             class="w-1.5 h-1.5 absolute right-1.5 bottom-0"
             fillClass="fill-zinc-900 dark:fill-zinc-300"
           ></m-svg-icon>
@@ -51,16 +51,22 @@
 import { useUserStore } from '@/store/modules/user.js'
 
 import { useRouter } from 'vue-router'
-import {confirm} from '@/libs'
+import { confirm } from '@/libs'
+import { useAppStore } from "@/store/modules/app.js";
+
+const appStore = useAppStore()
 
 const userStore = useUserStore()
+
+
+
 // 构建 menu 数据源
 const menuArr = [
   {
     id: 0,
     title: '个人资料',
     icon: 'profile',
-    path: '/profile',
+    path: `/profile/${userStore.userInfo.username}}`,
   },
   {
     id: 1,
@@ -81,6 +87,8 @@ const router = useRouter()
  * @description: 点击登录，跳转到登录页面
  */
 const onToLogin = () => {
+  // 修改路由过渡类型
+  appStore.changeRouterType('push')
   router.push('/login')
 }
 
@@ -90,7 +98,9 @@ const onToLogin = () => {
 const onItemClick = (item) => {
   // 有路径则跳转
   if (item.path) {
-    router.push('path')
+    // 修改路由过渡类型
+    appStore.changeRouterType('push')
+    router.push(item.path)
     return
   }
   confirm('您确定要退出登录吗？').then(() => {

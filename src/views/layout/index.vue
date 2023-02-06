@@ -1,13 +1,18 @@
 <template>
   <div class="h-screen">
     <header-vue class="h-header" />
-    <div  class="h-main" >
+    <div class="h-main" >
       <main-vue/>
     </div>
-   
     <floating-vue />
   </div>
 </template>
+
+<script>
+export default {
+  name: 'home'
+}
+</script>
 
 <script setup>
 import {} from 'vue'

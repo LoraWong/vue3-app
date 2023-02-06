@@ -189,6 +189,8 @@ onMounted(() => {
     isVisibleDetail.value = false
   })
 })
+
+console.log('list')
 </script>
 
 <style lang="scss" scoped></style>

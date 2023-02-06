@@ -1,9 +1,12 @@
 <template>
   <div class="flex justify-center items-center bg-slate-200 h-full">
     <div
-      class="bg-gradient-to-l from-[#FF4B2B] to-[#FF416C] xl:bg-white dark:bg-zinc-800 w-full h-full xl:w-[768px] xl:h-[600px] overflow-hidden xl:rounded-lg xl:shadow-lg relative"
+      class="bg-gradient xl:bg-white dark:bg-zinc-800 w-full h-full xl:w-[768px] xl:h-[600px] overflow-hidden xl:rounded-lg xl:shadow-lg relative"
     >
-      <m-svg-icon name="logo" class="absolute top-3 left-5 xl:hidden"></m-svg-icon>
+      <m-navbar class="bg-inherit xl:hidden" :clickLeft="onBackClick">
+        <m-svg-icon name="logo" class="w-13 h-2"></m-svg-icon>
+      </m-navbar>
+
       <div class="absolute left-0 bottom-0 w-full xl:w-[50%] h-[80%] xl:h-full z-20">
         <img
           src="@/assets/avatar.png"
@@ -68,11 +71,11 @@
       </div>
       <div class="absolute right-0 w-[50%] h-[100%] overflow-hidden z-30 hidden xl:block">
         <div
-          class="h-[100%] bg-gradient-to-l from-[#FF4B2B] to-[#FF416C] text-white flex justify-center items-center"
+          class="h-[100%] bg-gradient text-white flex justify-center items-center"
         >
           <div class="flex justify-center items-center flex-col text-center">
             <router-link to="/">
-              <m-svg-icon name="logo" class="absolute top-5 cursor-pointer"></m-svg-icon>
+              <m-svg-icon name="logo" class="absolute left-2 top-2 cursor-pointer"></m-svg-icon>
             </router-link>
             <h1>Welcome Back!</h1>
             <p class="text-base">To keep connected with us please login with your personal info</p>
@@ -83,6 +86,12 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: 'login'
+}
+</script>
+
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
@@ -91,9 +100,14 @@ import { validateUsername, validatePassword } from '../validator.js'
 import { useUserStore } from '@/store/modules/user.js'
 import { LOGIN_TYPE_USERNAME } from '@/constants'
 import { message } from '@/libs'
+import { useAppStore } from '@/store/modules/app.js'
+
+const appStore = useAppStore()
 
 const userStore = useUserStore()
 const router = useRouter()
+
+console.log('login')
 
 // 用户名和密码
 const loginForm = ref({
@@ -116,6 +130,8 @@ const onLoginHandler = async () => {
       loginType: LOGIN_TYPE_USERNAME,
     })
     message('success', '登录成功！', 6000)
+    // 修改路由过渡类型
+    appStore.changeRouterType('push')
     // 路由跳转
     router.push('/')
   } catch (error) {
@@ -128,7 +144,19 @@ const onLoginHandler = async () => {
  * @description: 跳转到login
  */
 const onToRegister = () => {
+  // 修改路由过渡类型
+  appStore.changeRouterType('push')
   router.push('/register')
+}
+
+/**
+ * @description: navbar后退按钮
+ */
+const onBackClick = () => {
+  console.log('first')
+  // 修改路由过渡类型
+  appStore.changeRouterType('back')
+  router.back()
 }
 </script>
 

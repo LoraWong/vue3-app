@@ -19,7 +19,7 @@ export const useCategoryStore = defineStore({
   actions: {
     async setCategory() {
       // 发请求，获取 category 数据
-      const { categorys } = await getCategory()
+      const { categorys } = await getCategory()      
       this.category = [ALL_CATEGORY_ITEM, ...categorys]
       setItem(CATEGORIES, this.category)
     },
