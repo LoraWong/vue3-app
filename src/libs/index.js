@@ -4,7 +4,7 @@ export { confirm } from './confirm'
 export { message } from './message'
 
 /**
- * 编写一个插件，用于批量注册全局组件
+ * 编写一个插件，用于批量自动注册全局组件
  */
 export default {
   install(app) {

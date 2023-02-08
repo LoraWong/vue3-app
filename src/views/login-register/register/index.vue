@@ -100,9 +100,7 @@
         </vee-form>
       </div>
       <div class="absolute right-0 w-[50%] h-[100%] overflow-hidden z-30 hidden xl:block">
-        <div
-          class="h-[100%] bg-gradient text-white flex justify-center items-center"
-        >
+        <div class="h-[100%] bg-gradient text-white flex justify-center items-center">
           <div class="flex justify-center items-center flex-col text-center">
             <router-link to="/">
               <m-svg-icon name="logo" class="absolute top-5 cursor-pointer"></m-svg-icon>
@@ -118,13 +116,13 @@
 
 <script>
 export default {
-  name: 'register'
+  name: 'register',
 }
 </script>
 
 <script setup>
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { message } from '@/libs'
 import {
   Form as VeeForm,
@@ -143,6 +141,7 @@ import { useAppStore } from '@/store/modules/app.js'
 import { LOGIN_TYPE_USERNAME } from '@/constants'
 
 const router = useRouter()
+const route = useRoute()
 const userStore = useUserStore()
 const appStore = useAppStore()
 
@@ -171,9 +170,15 @@ const onRegisterHandler = async () => {
       username: regForm.value.username,
       password: regForm.value.password,
     }
+
     // 发请求注册
-    await userStore.register(payload)
-    // 发请求登录
+    await userStore.register({
+      ...payload,
+      // 第三方登录跳转到注册页面，路由参数携带用户数据
+      ...route.query,
+    })
+
+    // 注册完成，发请求登录
     await userStore.login({ ...payload, loginType: LOGIN_TYPE_USERNAME })
     message('success', `欢迎您，${regForm.value.username}，注册成功！`, 6000)
     // 修改路由过渡类型

@@ -17,7 +17,9 @@
       <div
         class="hidden xl:block w-full h-full opacity-0 bg-zinc-300/60 absolute top-0 left-0 z-20 rounded group-hover:opacity-100 duration-300"
       >
-        <m-button class="absolute top-1.5 left-1.5" size="small">分享</m-button>
+        <m-button class="absolute top-1.5 left-1.5" size="small" @click="onShareClick"
+          >分享</m-button
+        >
         <m-button
           class="absolute top-1.5 right-1.5"
           type="info"
@@ -56,6 +58,7 @@ import { randomColor } from '@/utils/color.js'
 import { saveAs } from 'file-saver'
 import { message } from '@/libs'
 import { useFullscreen, useElementBounding } from '@vueuse/core'
+import { weiboShare } from '@/utils/share.js'
 
 const props = defineProps({
   // 单个 Item 数据
@@ -147,8 +150,12 @@ const getImgContainerCenter = () => {
   }
 }
 
-
-
+/**
+ * @description: 微博分享
+ */
+const onShareClick = () => {
+  weiboShare(props.data.photo, `https://imooc-front.lgdsunday.club/pins/${props.data.id}`)
+}
 </script>
 
 <style lang="scss" scoped>

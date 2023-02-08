@@ -11,12 +11,13 @@
       <div class="flex-auto"></div>
       <header-theme-vue />
       <header-my-vue v-if="!isMobileTerminal" />
-      <router-link
+      <!-- 移动端头像 -->
+      <img
         v-if="isMobileTerminal && userStore.hasUserInfo"
-        :to="`/profile/${userStore.userInfo.username}}`"
-      >
-        <img :src="userStore.userInfo.avatar" class="block w-3 h-3 rounded-full" />
-      </router-link>
+        :src="userStore.userInfo.avatar"
+        class="block w-3 h-3 rounded-full"
+        @click="onAvatarClick"
+      />
     </div>
   </div>
 </template>
@@ -48,6 +49,12 @@ const onToHome = () => {
   // 修改路由过渡类型
   appStore.changeRouterType('push')
   router.push('/')
+}
+
+const onAvatarClick = () => {
+  // 修改路由过渡类型
+  appStore.changeRouterType('push')
+  router.push(`/profile/${userStore.userInfo.username}}`)
 }
 </script>
 

@@ -101,7 +101,7 @@
         <!-- 保存修改 -->
         <m-button
           size="small"
-          class="w-full mt-2 mb-4 dark:text-zinc-300 dark:bg-zinc-800 xl:w-[160px] xl:ml-[50%] xl:translate-x-[-50%]"
+          class="  w-4/5 mt-2 mb-4 dark:text-zinc-300 dark:bg-zinc-800 xl:w-[160px] xl:ml-[50%] xl:translate-x-[-50%]"
           @click="onChangeProfile"
           >保存修改</m-button
         >
@@ -110,7 +110,7 @@
           v-if="isMobileTerminal"
           :loading="loading"
           size="small"
-          class="w-full dark:text-zinc-300 dark:bg-zinc-800 xl:w-[160px] xl:ml-[50%] xl:translate-x-[-50%]"
+          class="w-4/5 dark:text-zinc-300 dark:bg-zinc-800 xl:w-[160px] xl:ml-[50%] xl:translate-x-[-50%]"
           @click="onLogoutClick"
         >
           退出登录

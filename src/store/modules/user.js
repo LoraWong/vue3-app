@@ -3,7 +3,7 @@ import store from '@/store'
 import { setItem, getItem, clear } from '@/utils/storage'
 import { loginUser, getProfile, registerUser, putProfile } from '@/api/sys'
 import md5 from 'md5'
-import { TOKEN } from '@/constants'
+import { TOKEN, LOGIN_TYPE_NO_REGISTRATION_CODE } from '@/constants'
 
 export const useUserStore = defineStore({
   id: 'user',
@@ -26,10 +26,15 @@ export const useUserStore = defineStore({
         ...payload,
         password: password ? md5(password) : '',
       })
+      // 判断扫码用户是否已注册，服务端返回data数据中 code为204，则表示当前用户未注册
+      if (data.code === LOGIN_TYPE_NO_REGISTRATION_CODE) {
+        return data.code
+      }
       // 保存 token
       this.token = data.token
       setItem(TOKEN, data.token)
-      // 获取用户信息
+
+      // 携带token，获取用户信息
       await this.getUserInfo()
     },
     // 获取用户信息

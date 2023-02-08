@@ -63,16 +63,14 @@
           </m-button>
           <div class="w-full flex justify-around">
             <!-- QQ -->
-            <m-svg-icon class="w-4 cursor-pointer" name="qq"></m-svg-icon>
+            <qq-login-vue></qq-login-vue>
             <!-- 微信 -->
-            <m-svg-icon class="w-4 cursor-pointer" name="wexin"></m-svg-icon>
+            <weixin-login-vue></weixin-login-vue>
           </div>
         </vee-form>
       </div>
       <div class="absolute right-0 w-[50%] h-[100%] overflow-hidden z-30 hidden xl:block">
-        <div
-          class="h-[100%] bg-gradient text-white flex justify-center items-center"
-        >
+        <div class="h-[100%] bg-gradient text-white flex justify-center items-center">
           <div class="flex justify-center items-center flex-col text-center">
             <router-link to="/">
               <m-svg-icon name="logo" class="absolute left-2 top-2 cursor-pointer"></m-svg-icon>
@@ -88,7 +86,7 @@
 
 <script>
 export default {
-  name: 'login'
+  name: 'login',
 }
 </script>
 
@@ -101,6 +99,8 @@ import { useUserStore } from '@/store/modules/user.js'
 import { LOGIN_TYPE_USERNAME } from '@/constants'
 import { message } from '@/libs'
 import { useAppStore } from '@/store/modules/app.js'
+import qqLoginVue from './qq-login.vue'
+import weixinLoginVue from './weixin-login.vue'
 
 const appStore = useAppStore()
 

@@ -12,7 +12,7 @@
       限时特惠 | 距离优惠结束仅剩
       <m-count-down
         :time="52 * 60 * 1000"
-        class="inline-block"
+        class="inline-block w-5"
         @finish="isCountDownFinish = true"
       ></m-count-down>
     </p>
@@ -21,6 +21,6 @@
 
 <script setup>
 import { ref } from 'vue'
-// 倒计时是否结束
+// 倒计时是否结束，倒计时结束销毁该组件
 const isCountDownFinish = ref(false)
 </script>
