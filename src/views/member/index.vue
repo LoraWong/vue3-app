@@ -20,12 +20,12 @@
             :hot="item.isHot"
             :select="item.id === currentPayData.id"
             :data="item"
-            @click="onChangeCurrentPay"
+            @click="onChangeCurrentPay(item)"
           ></pay-menu-item-vue>
         </div>
         <p class="mt-1 text-sm text-zinc-500">{{ currentPayData.desc }}</p>
         <!-- 支付 -->
-        <payment-vue class="mt-4" />
+        <payment-vue class="mt-4" :payData="currentPayData"/>
       </div>
     </div>
   </div>
@@ -72,7 +72,10 @@ const onNavbarLeftClick = () => {
 const currentPayData = ref({})
 const onChangeCurrentPay = (item) => {
   currentPayData.value = item
+  console.log('🚀 ~ file: index.vue:75 ~ onChangeCurrentPay ~ item', item)
+  
 }
+
 </script>
 
 <style lang="scss" scoped></style>

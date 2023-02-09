@@ -1,5 +1,5 @@
 <template>
-  <div class="xl:h-header w-full bg-gradient px-1 py-1 duration-500">
+  <div class="xl:h-header w-full bg-gradient dark:bg-zinc-800 px-1 py-1 duration-500">
     <div class="flex items-center flex-wrap">
       <m-svg-icon
         name="logo"
